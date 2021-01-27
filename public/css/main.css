@@ -1,0 +1,75 @@
+
+#cke_1_contents{
+    height: 80px !important; 
+    
+}
+
+/*body { background-image: linear-gradient(white, #000ca2); }*/
+
+#header-fon{
+    background: url('../image/white-scratone.png');
+}
+
+body {
+    background: url('../image/white-buds.png');
+}
+
+/*#foto_profile{
+    margin-left: 10%;
+}*/
+
+#bookmark{
+    position: relative;
+}
+
+.avatar {
+    margin-top: -60px;
+    margin-left: 10%;
+    z-index: 2;
+    vertical-align: middle;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.avatar-top{
+     
+}
+
+.fio{
+    margin-top: -80px;
+    margin-left: 35%;
+}
+
+#profile_info{
+    
+}
+
+#sort_news{
+    font-size: 12px;
+    margin-bottom: 0;
+}
+
+#admin_menu{
+    margin: 8px;
+}
+
+.resiver{
+    background: #72acf0;
+}
+
+.sender{
+    background: #65ceca;
+}
+.m_time{
+    float:right;
+    font-size: 12px;
+    color: #250934;
+    right: -12px;
+}
+
+.textlast{
+    white-space: nowrap; /* Отменяем перенос текста */
+    overflow: hidden; /* Обрезаем содержимое */
+    text-overflow: ellipsis; /* Многоточие */
+}
