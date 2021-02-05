@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Янв 27 2021 г., 18:03
+-- Время создания: Фев 05 2021 г., 19:27
 -- Версия сервера: 10.4.14-MariaDB
 -- Версия PHP: 7.4.10
 
@@ -20,6 +20,33 @@ SET time_zone = "+00:00";
 --
 -- База данных: `laravel`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `accounts`
+--
+
+CREATE TABLE `accounts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `surname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `show_contacts` tinyint(1) NOT NULL DEFAULT 0,
+  `contacts` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `photo_profile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `accounts`
+--
+
+INSERT INTO `accounts` (`id`, `user_id`, `surname`, `status`, `phone`, `show_contacts`, `contacts`, `photo_profile`, `created_at`, `updated_at`) VALUES
+(2, 1, 'Борн', 'Привет!', '8-029-111-11-11', 1, NULL, '21_02_05_08_24_36.jpg', '2021-02-04 18:19:29', '2021-02-05 17:24:36'),
+(3, 2, 'Джонсон', 'Ола!', '8-029-333-33-33', 1, NULL, '21_02_05_08_32_10.jpg', '2021-02-05 17:32:10', '2021-02-05 17:32:10');
 
 -- --------------------------------------------------------
 
@@ -691,7 +718,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (37, '2016_02_15_204651_create_categories_table', 13),
 (38, '2017_04_11_000000_alter_post_nullable_fields_table', 13),
 (39, '2020_11_30_200509_create_messages_table', 14),
-(40, '2020_12_14_214223_create_last_messages_table', 15);
+(40, '2020_12_14_214223_create_last_messages_table', 15),
+(41, '2021_02_04_195631_create_accounts_table', 16);
 
 -- --------------------------------------------------------
 
@@ -1092,7 +1120,8 @@ INSERT INTO `publications` (`id`, `body`, `status`, `type`, `group_id`, `user_id
 (5, '<p>3</p>', 'active', '', 0, 1, '2020-10-21 17:40:49', '2020-10-21 17:40:49'),
 (6, '<p>5</p>', 'active', '', 0, 1, '2020-10-21 17:40:53', '2020-10-21 17:40:53'),
 (7, '<p>Hello world!</p>', 'active', '', 0, 1, '2020-11-11 17:54:44', '2020-11-11 17:54:44'),
-(8, '<p><strong>Good evening!&nbsp;<img alt=\"smiley\" src=\"http://localhost:8000/ckeditor-m/ckeditor/plugins/smiley/images/regular_smile.png\" style=\"height:23px; width:23px\" title=\"smiley\" /></strong></p>', 'active', '', 0, 1, '2020-11-12 18:48:45', '2020-11-12 18:48:45');
+(8, '<p><strong>Good evening!&nbsp;<img alt=\"smiley\" src=\"http://localhost:8000/ckeditor-m/ckeditor/plugins/smiley/images/regular_smile.png\" style=\"height:23px; width:23px\" title=\"smiley\" /></strong></p>', 'active', '', 0, 1, '2020-11-12 18:48:45', '2020-11-12 18:48:45'),
+(11, '<p><img alt=\"\" src=\"https://inflowers.by/wp-content/uploads/2019/06/2006201903.jpg\" style=\"height:167px; width:250px\" /></p>', 'active', '', 0, 1, '2021-02-05 17:38:15', '2021-02-05 17:38:15');
 
 -- --------------------------------------------------------
 
@@ -1231,7 +1260,7 @@ CREATE TABLE `users` (
   `role_id` bigint(20) UNSIGNED DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sub` tinytext CHARACTER SET utf8 NOT NULL,
+  `sub` tinytext CHARACTER SET utf8 DEFAULT NULL,
   `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT 'users/default.png',
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1246,11 +1275,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `sub`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'user1', 'user1@mail.ru', '', 'users/default.png', NULL, '$2y$10$P1UyPe8lQ92zCn4y1BvsgOOUvBx1YcMAIokqMtFD7JLB9S6/bPhDm', NULL, NULL, '2020-10-09 13:57:33', '2020-10-09 13:57:33'),
-(2, 2, 'user two', 'user2@mail.ru', '', 'users\\November2020\\sbUUH3ZAVMPFDp10mRIe.jpg', NULL, '$2y$10$AXeLAFmexPVVmpU7Vv6QPe7zwIcTCMH5u3M4hKLOqb318S6s5/rYe', NULL, '{\"locale\":\"en\"}', '2020-11-04 16:00:00', '2020-11-06 16:57:28'),
+(1, 1, 'Джон', 'user1@mail.ru', '', 'users/default.png', NULL, '$2y$10$P1UyPe8lQ92zCn4y1BvsgOOUvBx1YcMAIokqMtFD7JLB9S6/bPhDm', NULL, NULL, '2020-10-09 13:57:33', '2021-02-04 18:23:52'),
+(2, 2, 'Мария', 'user2@mail.ru', '', 'users\\November2020\\sbUUH3ZAVMPFDp10mRIe.jpg', NULL, '$2y$10$AXeLAFmexPVVmpU7Vv6QPe7zwIcTCMH5u3M4hKLOqb318S6s5/rYe', NULL, '{\"locale\":\"en\"}', '2020-11-04 16:00:00', '2021-02-05 17:32:10'),
 (3, NULL, 'user three', 'user3@mail.ru', '', 'users/default.png', NULL, '$2y$10$lc0lEm0fWTD2Fm6aWIYUGuVHdgVZ/zrznhCye3vMxZSjxYj/Aa.Vq', NULL, '{\"locale\":\"en\"}', '2020-11-04 16:01:26', '2020-11-06 16:52:33'),
 (4, 2, 'usertest2', 'usertest2@mail.ru', '', 'users/default.png', NULL, '$2y$10$6FglVOFkApE.8Tb7PjoWl.0/To1R3ni1.7RMPwG78RtX0JFesw0gi', NULL, NULL, '2020-11-18 16:25:16', '2020-11-18 16:25:16'),
-(15, 2, 'user4name', 'rinhvivar@gmail.com', '', 'users/default.png', NULL, '$2y$10$ql4.StMqNCUphI7XLVES4.piHaY3rpjKhea7t4Yh/SfJ527iS9xIG', NULL, NULL, '2020-11-18 17:47:47', '2020-11-18 17:47:47');
+(16, 2, 'Джулия', 'testprofile@mail.ru', NULL, 'users/default.png', NULL, '$2y$10$maBhgAJwaW/z80htnU4kjemqwcbKiDhpZSZTRDfvFJAYCXRZvconC', NULL, NULL, '2021-02-05 16:08:47', '2021-02-05 16:08:47'),
+(19, 2, 'Тоня', 'rinhvivar@gmail.com', NULL, 'users/default.png', NULL, '$2y$10$bBHqtIplGPEixBSBZzA46O2nfHF8RsTrdNyLDLpBvjhejcR2lNuHK', NULL, NULL, '2021-02-05 16:27:50', '2021-02-05 16:27:50');
 
 -- --------------------------------------------------------
 
@@ -1273,6 +1303,12 @@ INSERT INTO `user_roles` (`user_id`, `role_id`) VALUES
 --
 -- Индексы сохранённых таблиц
 --
+
+--
+-- Индексы таблицы `accounts`
+--
+ALTER TABLE `accounts`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `albums`
@@ -1479,6 +1515,12 @@ ALTER TABLE `user_roles`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `accounts`
+--
+ALTER TABLE `accounts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT для таблицы `albums`
 --
 ALTER TABLE `albums`
@@ -1560,7 +1602,7 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT для таблицы `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT для таблицы `movies`
@@ -1614,7 +1656,7 @@ ALTER TABLE `properties`
 -- AUTO_INCREMENT для таблицы `publications`
 --
 ALTER TABLE `publications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT для таблицы `roles`
@@ -1638,7 +1680,7 @@ ALTER TABLE `translations`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

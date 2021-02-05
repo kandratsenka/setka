@@ -26,6 +26,7 @@ use App\Http\Controllers;
  Route::group(['middleware' => ['login','lang']], function () {
         Route::get('/logout', [Auth0IndexController::class, 'logout'])->name('authlogout');
     Route::get('/profile', [Auth0IndexController::class, 'profile'])->name('profile');
+    Route::post('/account', [Controllers\AccountController::class, 'postIndex']);
     Route::post('/publication',[Controllers\PublicationController::class,'postIndex']);
     Route::post('/properties/add',[Controllers\PropertiesController::class,'postIndex']);
     Route::post('/galery/add',[Controllers\GaleryController::class,'postAdd']);
@@ -41,7 +42,7 @@ use App\Http\Controllers;
     Route::get('/message/{id}',[Controllers\MessagesController::class,'getMessage']);
     Route::get('/profile/{id}',[Controllers\ProfileController::class,'getIndex']);
     Route::get('/properties',[Controllers\PropertiesController::class,'getIndex']);
-    Route::get('/galery',[Controllers\GaleryController::class,'getIndex']);
+    Route::get('/galery/{id}',[Controllers\GaleryController::class,'getIndex']);
     Route::get('/friends/add',[Controllers\NetController::class,'getAdd']);
     Route::get('/friend/add/{id}',[Controllers\NetController::class,'getAddOne']);
     Route::get('/friend/delete/{id}',[Controllers\NetController::class,'getDeleteOne']);

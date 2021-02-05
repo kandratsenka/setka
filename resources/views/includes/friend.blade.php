@@ -1,11 +1,12 @@
-<div class="col-sm-6">
+<div class="col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                               <img src="../image/icons8-male-user-100.png" alt="Avatar" class="avatarFriend">
+                              @include('includes.photoProfile',['classname'=>'avatarFriend','obj_user'=>$one])
+                               <!--<img src="../image/icons8-male-user-100.png" alt="Avatar" class="avatarFriend">-->
                                 <div class="fio">                               
                                 <h5 class="card-title">
                                     <a href="{{asset('profile/'.$one->id)}}">
-                                    {{$one->name}}
+                                    {{($one->accounts) ? $one->accounts->surname : ''}} {{$one->name}}
                                     </a>
                                 </h5>
                                 <p class="card-text">{{__('menu.buttons.online')}} / {{__('menu.buttons.offline')}}</p>

@@ -133,15 +133,6 @@
         </main>
     </div>
     
-    @if (Route::has('login'))
-    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-        @auth
-            <a href="{{ route('authlogout') }}" class="text-sm text-gray-700 underline">Sign out</a>
-        @else
-            <a href="{{ route('authlogin') }}" class="text-sm text-gray-700 underline">Sign in / Register</a>
-        @endauth
-    </div>
-@endif
     
     <script src="{{ asset('/js/jquery-3.5.1.min.js')}}"></script>
    <!-- <script src="{{ asset('/bootstrap-4.5.2-dist/js/bootstrap.min.js')}}"></script>-->

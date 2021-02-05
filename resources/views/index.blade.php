@@ -14,19 +14,20 @@
     <div class="row justify-content-center">
         <div class="col-md-3">
             <div class="card" style="width: 14rem;">
-                <img src="../image/icons8-user-100.png" class="card-img-top" alt="Фото пользователя" width="200px">
+                 @include('includes.photoProfile',['classname'=>'card-img-top','obj_user'=>auth::user()])
+                <!--<img src="../image/icons8-user-100.png" class="card-img-top" alt="Фото пользователя" width="200px">-->
                 <div class="card-body">
-                    <h5 class="card-title">Фамилия и имя пользователя</h5>
+                    <h5 class="card-title">{{(auth::user()->accounts) ? auth::user()->accounts->surname : ''}} {{(auth::user()->name) ? auth::user()->name : ''}}</h5>
                     <p class="card-text">{{ __('menu.user_info.position') }}:</p>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">{{ __('menu.user_info.place_of_work') }}:<a href="#" class="card-link">Кол-во </a></li>
                     <li class="list-group-item">{{__('menu.user_info.friends')}}: <a href="#" class="card-link">Кол-во </a></li>
-                    <li class="list-group-item">{{__('menu.user_info.community')}}: <a href="#" class="card-link">Кол-во </a></li>
+                    <!--<li class="list-group-item">{{__('menu.user_info.community')}}: <a href="#" class="card-link">Кол-во </a></li>-->
                     <li class="list-group-item">{{__('menu.user_info.foto')}}: <a href="#" class="card-link">Кол-во </a></li>
                 </ul>
                 <div class="card-body">
-                    <a href="{{asset('profile/'.auth::user()->id)}}" class="card-link">{{__('menu.user_info.open_profile')}}<img src="{{asset(storage_path().setting('admin.loader'))}}"><img src="{{ Storage::disk(config('voyager.storage.disk'))->url(setting('admin.loader')) }}" style="width:200px; height:auto; padding:2px; border:1px solid #ddd; margin-bottom:10px;"></a>
+                    <a href="{{asset('profile/'.auth::user()->id)}}" class="card-link">{{__('menu.user_info.open_profile')}}</a>
                 </div>
             </div>
 
@@ -34,7 +35,7 @@
 
 
         </div>
-        <div class="col-md-7">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header">{{__('menu.news_list.news')}}</div>
 
@@ -130,7 +131,7 @@
 
 
 
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div id="root"></div>
             <div class="card">
               
@@ -139,7 +140,10 @@
                 </div>
                 @foreach($users as $user)
                   <div class="card-body">
-                    <p class="card-title"><img src="../image/icons8-male-user-100.png" class="card-img-top" alt="Фото"><strong>{{$user -> name}}</strong></p>
+                    <p class="card-title">
+                    @include('includes.photoProfile',['classname'=>'card-img-top','obj_user'=>$user])
+                    <!--<img src="../image/icons8-male-user-100.png" class="card-img-top" alt="Фото">-->
+                    <strong>{{($user->accounts) ? $user->accounts->surname : ''}} {{$user -> name}}</strong></p>
                     @if(isset($user->property->born))
                     <p>
                    {{$user -> property -> age}}

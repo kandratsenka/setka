@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@push('scripts') 
+<script src="{{asset('js/profile.js')}}"></script>
+@endpush
 @section('content')
 
 
@@ -7,11 +9,36 @@
 <div class="container">
 
     <div class="card " id="foto_profile">
-        <img src="../image/minimalizm-oblaka-blue.jpg" class="card-img-top avatar-top" alt="Фото профиля">
-        <img src="../image/avatar.jpg" alt="Avatar" class="avatar">
+        <div id="bg_profile">
+            <img src="../image/minimalizm-oblaka-blue.jpg" class="card-img-top avatar-top" id="bg" alt="Фото профиля">
+            @if(auth::user())
+            @if(auth::user()->id == $obj_user->id)
+                <div id="bg_showhite">
+                   <!--Сменить фон-->
+                    <a href="#" data-toggle="modal" data-target="#bgModal"><img src="../image/icons8-camera-48 (1).png" title="Сменить фон"></a>
+                </div>
+            @endif
+            @endif
+        </div>
+       <div id="foto_name_profile">
+          @include('includes.photoProfile',['classname'=>'avatar'])
+           <!-- <img src="../image/avatar.jpg" alt="Avatar"  id="avatar" class="avatar">-->
+            @if(auth::user())
+            @if(auth::user()->id == $obj_user->id)
+            <div id="avatar_showhite">
+              <!-- Сменить аватар-->
+                <a href="#" data-toggle="modal" data-target="#avatarModal">
+                <img src="../image/icons8-pencil-32.png" title="Редактировать основные сведения"></a>
+            </div>
+            @endif
+            @endif
+        
         <div class="card-body fio" id="fio">
-            <h5 class="card-title">Фамилия и имя</h5>
-            <p class="card-text">{{__('menu.user_info.position')}}</p>
+            <h5 class="card-title">{{($obj_user->accounts) ? $obj_user->accounts->surname : ''}} {{($obj_user->name) ? $obj_user->name : ''}}</h5>
+            <p class="card-text">{{($obj_user->accounts) ? $obj_user->accounts->status : ''}}</p>
+            @if($obj_user->accounts) {{($obj_user->accounts->show_contacts==1) ? $obj_user->accounts->phone : ''}}
+            @endif
+        </div>
         </div>
     </div>
 
@@ -152,32 +179,11 @@
             </div>
             <div class="tab-pane fade" id="friends" role="tabpanel" aria-labelledby="friends-tab">
                 <div class="row">
+                    @foreach($allfriends as $one)
                     <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                               <img src="../image/icons8-male-user-100.png" alt="Avatar" class="avatarFriend">
-                                <div class="fio">                               
-                                <h5 class="card-title">Фамилия Имя</h5>
-                                <p class="card-text">{{__('menu.buttons.online')}} / {{__('menu.buttons.offline')}}</p>
-                                <a href="#" class="btn btn-primary">{{__('menu.buttons.write_message')}}</a>
-                                <a href="#" class="btn btn-primary">{{__('menu.buttons.be_friends')}}/{{__('menu.buttons.unsubscribe')}}</a>
-                                </div>
-                            </div>
-                        </div>
+                        @include('includes.friend')
                     </div>
-                    <div class="col-sm-6">
-                        <div class="card">
-                            <div class="card-body">
-                               <img src="../image/icons8-male-user-100.png" alt="Avatar" class="avatarFriend">
-                                <div class="fio">                               
-                                <h5 class="card-title">Фамилия Имя</h5>
-                                <p class="card-text">{{__('menu.buttons.online')}} / {{__('menu.buttons.offline')}}</p>
-                                <a href="#" class="btn btn-primary">{{__('menu.buttons.write_message')}}</a>
-                                <a href="#" class="btn btn-primary">{{__('menu.buttons.be_friends')}}/{{__('menu.buttons.unsubscribe')}}</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
 
             </div>
@@ -188,7 +194,7 @@
     <br>
 
     <div class="card">
-        <div class="card-header"><a href="{{asset('galery')}}">{{__('menu.profile_page.foto')}}</a> (количество)</div>
+        <div class="card-header"><a href="{{asset('galery/'.$obj_user->id)}}">{{__('menu.profile_page.foto')}}</a> (количество)</div>
         <div class="card-body">
             Отобразить последние три
 
@@ -198,10 +204,107 @@
 
 
 
-    <!--Стена-->
+<!-- Modal bg-->
+<div class="modal fade" id="bgModal" tabindex="-1" role="dialog" aria-labelledby="bgModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="bgModalLabel">Сменить фон</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+       <form action="{{asset('/profile/avatar/add')}}" method="post" enctype="multipart/form-data">
+      <div class="modal-body">
+            @if($obj_user->avatar)
+            <img src="{{asset('image/avatar/icons8-user-settings-100.png')}}" alt="Avatar" id="changed_avatar" class="avatar1">
+            @else 
+            <img src="../image/avatar.jpg" alt="Avatar"  id="avatar_default" class="avatar1">
+            @endif
+           @csrf
+            <div class="form-group">
+                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="picture1" />
+            </div>
+        
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+        <button type="submit" class="btn btn-primary">Загрузить</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
 
-
-    <!---->
+<!-- Modal foto name-->
+<div class="modal fade" id="avatarModal" tabindex="-1" role="dialog" aria-labelledby="avatarModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="avatarModalLabel">Редактировать основные сведения</h5>
+        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{{asset('/account')}}" method="post" enctype="multipart/form-data">
+      <div class="modal-body">
+           @include('includes.photoProfile',['classname'=>'avatar1'])
+            <!--@if($obj_user->accounts)
+            @if($obj_user->accounts->photo_profile)
+            <img src="{{asset('uploads/'.$obj_user->id.'/'.$obj_user->accounts->photo_profile)}}" alt="Avatar"  id="avatar_default" class="avatar1">
+            
+            @else
+            <img src="{{asset('image/avatar/icons8-user-settings-100.png')}}" alt="Avatar" id="changed_avatar" class="avatar1">
+            @endif
+            @else 
+            <img src="{{asset('image/avatar/icons8-user-settings-100.png')}}" alt="Avatar" id="changed_avatar" class="avatar1">
+            @endif-->
+           @csrf
+            <div class="form-group">
+                <input type="file" class="form-control-file" id="exampleFormControlFile1" name="picture1" />
+            </div>
+        <!---------->  
+           <div class="form-group">
+                <label for="name">Имя</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{auth::user()->name}}" required>
+            </div> 
+            <div class="form-group">
+                <label for="surname">Фамилия</label>
+                <input type="text" class="form-control" id="surname" name="surname" value="{{(auth::user()->accounts) ? auth::user()->accounts->surname : ''}}">
+            </div> 
+            <div class="form-group">
+                <label for="status">Статус</label>
+                <textarea rows="2" class="form-control" id="status" name="status">{{(auth::user()->accounts) ? auth::user()->accounts->status : ''}}</textarea>
+            </div> 
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="show_contacts" name="show_contacts" @if(auth::user()->accounts){{(auth::user()->accounts->show_contacts == 1) ? 'checked' : ''}}@endif>
+                
+                <label class="form-check-label" for="show_contacts">Отображать на странице профиля контактные данные</label>
+            </div> 
+            <div class="form-group">
+                <label for="phone">Телефон в формате 8-0xx-xxx-xx-xx:</label>
+                <input type="tel" name="phone" class="form-control" id="phone" value="{{(auth::user()->accounts) ? auth::user()->accounts->phone : ''}}" pattern="8-0[0-9]{2}-[0-9]{3}-[0-9]{}-[0-9]{2}">
+            </div> 
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" disabled value="{{auth::user()->email}}">
+            </div>
+            
+            
+            
+        <!--******-->
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+        <button type="submit" class="btn btn-primary">Загрузить</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 </div>
 @endsection

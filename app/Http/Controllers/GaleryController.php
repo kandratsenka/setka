@@ -5,17 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Album;
 use App\Models\Galery;
+use App\Models\User;
 use Auth;
 use App;
 
 class GaleryController extends Controller
 {
-    public function getIndex(){
-        
+    public function getIndex($id){
+        $user = User::find($id);
         $albums = Album::OrderBy('id','DESC')->get();
-        $pictures = Galery::where('user_id',Auth::user()->id)->orderBy('id','DESC')->simplePaginate(21);
+        $pictures = Galery::where('user_id',$user->id)->orderBy('id','DESC')->simplePaginate(21);
         
-        return view('galery',compact('albums','pictures'));
+        return view('galery',compact('albums','pictures','user'));
     }
     
     public function postAdd(){

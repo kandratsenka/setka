@@ -48,6 +48,10 @@ class User extends \TCG\Voyager\Models\User implements JWTSubject
         return $this->hasOne('App\Models\Property');
     }
     
+    public function accounts(){
+        return $this->hasOne('App\Models\Account');
+    }
+    
     public function friends() {
         /*return $this->hasMany('App\Models\Friend', 'user_id');*/
         return $this->belongsToMany('App\Models\User', 'App\Models\Friend', 'user_id', 'friend_id')->orderBy('name');

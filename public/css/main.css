@@ -22,6 +22,29 @@ body {
     position: relative;
 }
 
+#bg_profile{
+    position: relative;
+}
+#bg_showhite{
+    display: none;
+    position: relative;
+    margin-top: -45px;
+    left: 92%;
+    z-index: 3;
+} 
+
+#foto_name_profile{
+    position: relative;
+}
+
+#avatar_showhite{
+    display: none;
+    position: relative;
+    margin-top: -30px;
+    left: 92%;
+    z-index: 3;
+}
+
 .avatar {
     margin-top: -60px;
     margin-left: 10%;
@@ -32,10 +55,11 @@ body {
     border-radius: 50%;
 }
 
-.avatar-top{
-     
+.avatar1 {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
 }
-
 .fio{
     margin-top: -80px;
     margin-left: 35%;
@@ -73,3 +97,4 @@ body {
     overflow: hidden; /* Обрезаем содержимое */
     text-overflow: ellipsis; /* Многоточие */
 }
+
