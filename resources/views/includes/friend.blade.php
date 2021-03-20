@@ -1,7 +1,7 @@
-<div class="col-sm-12">
+<div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
-                              @include('includes.photoProfile',['classname'=>'avatarFriend','obj_user'=>$one])
+                              @include('includes.photoProfile',['classname'=>'avatarFriend','obj_user'=>$one,'ss'=>'ss'])
                                <!--<img src="../image/icons8-male-user-100.png" alt="Avatar" class="avatarFriend">-->
                                 <div class="fio">                               
                                 <h5 class="card-title">

@@ -35,4 +35,23 @@ class AccountController extends Controller
         
          return redirect()->back();
     }
+    public function postBg(){
+
+        $obj = Account::where('user_id',Auth::user()->id)->first();
+        if(!$obj){
+             $obj = new Account;
+        } 
+        $pic_bg = \App::make('\App\Libs\Imag')->url($_FILES['picture1']['tmp_name']);
+        if($pic_bg){
+          if($obj->bg_profile != ''){
+              @unlink(public_path().'/uploads/'.Auth::user()->id.'/'.$obj->bg_profile);
+              @unlink(public_path().'/uploads/'.Auth::user()->id.'/s'.$obj->bg_profile);
+              @unlink(public_path().'/uploads/'.Auth::user()->id.'/ss'.$obj->bg_profile);
+          }
+             $obj -> bg_profile = $pic_bg;
+         }
+        $obj -> save();
+        
+        return redirect()->back();
+    }
 }

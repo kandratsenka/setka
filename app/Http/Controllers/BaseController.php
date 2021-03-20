@@ -12,13 +12,21 @@ class BaseController extends Controller
 {
     //
 	public function getIndex(Request $request){
-		$objs=Publication::where('user_id',Auth::user()->id)->orderBy('id',$request->sort)->simplePaginate(20);
+		$friends = Friend::where('user_id', Auth::user()->id)->pluck('friend_id','friend_id')->toArray();
+        $user_friends = User::whereIn('id',$friends)->get();
+        $me_with_friends = $friends + [Auth::user()->id=>Auth::user()->id];
+        //dd($me_with_friends);
+        $objs=Publication::with(['users','users.accounts'])->whereIn('user_id',$me_with_friends)->orderBy('id',$request->sort)->simplePaginate(20);
+        //dd($objs);
         
-        $friends = Friend::where('user_id', Auth::user()->id)->pluck('id')->toArray();
-         
-        $users = User::whereNotIn('id',$friends)->where('id','!=',Auth::user()->id)->inRandomOrder()->limit(2)->get();    
+       //dd($friends);
+        
+       //dd($user_friends);
+        
+        $users = User::whereNotIn('id',$friends)->where('id','!=',Auth::user()->id)->inRandomOrder()->limit(2)->get();  
+        
       /* dd($users);*/
-            return view('index',compact('objs','users'));
+            return view('index',compact('objs','users','user_friends'));
 	}
     public function getText($url=null){
 		$obj=Maintext::where('url',$url)->first();

@@ -18,8 +18,7 @@
     
     <link rel="stylesheet" href="{{asset('/css/shake.css')}}">
     @show
-
-    
+     
 
 
 </head>
@@ -40,9 +39,10 @@
                         <li class="nav-item"><a class="nav-link" href="{{asset('groups')}}">Сообщество</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{asset('friends')}}">Друзья</a></li>-->
                         <!-- <li class="nav-item"><a class="nav-link" href="{{asset('index')}}">Главная</a></li>-->
-                        <li class="nav-item"><a class="nav-link {{($url =='/')?'active':''}}" href="{{asset('/')}}"> <img src="../image/icons8-business-network-32.png" alt="Сетка"> Сетка</a></li>
-                        <li class="nav-item"><a class="nav-link {{($url =='/net')?'active':''}}" href="{{asset('net')}}">{{ __('menu.top.net') }}</a></li>
+                        <li class="nav-item"><a class="nav-link {{($url =='/')?'active':''}}" href="{{asset('/')}}"> <img src="{{asset('image/icons8-business-network-32.png')}}" alt="Сетка"> Сетка</a></li>
+                        <li class="nav-item"><a class="nav-link {{($url =='/net')?'active':''}}" href="{{asset('net')}}">Друзья</a></li>
                         <li class="nav-item"><a class="nav-link {{($url =='/messages')?'active':''}}" href="{{asset('messages')}}">{{ __('menu.top.messages') }}</a></li>
+                        <li class="nav-item"><a class="nav-link {{($url =='/gallery')?'active':''}}" href="{{asset('gallery')}}">Галерея</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -133,11 +133,12 @@
         </main>
     </div>
     
-    
     <script src="{{ asset('/js/jquery-3.5.1.min.js')}}"></script>
    <!-- <script src="{{ asset('/bootstrap-4.5.2-dist/js/bootstrap.min.js')}}"></script>-->
    <script src="{{asset('js/app.js')}}"></script>
     @stack('scripts')
+    
+   
 </body>
 
 </html>

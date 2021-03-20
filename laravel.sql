@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Фев 05 2021 г., 19:27
+-- Время создания: Фев 12 2021 г., 19:16
 -- Версия сервера: 10.4.14-MariaDB
 -- Версия PHP: 7.4.10
 
@@ -36,6 +36,7 @@ CREATE TABLE `accounts` (
   `show_contacts` tinyint(1) NOT NULL DEFAULT 0,
   `contacts` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `photo_profile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bg_profile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -44,9 +45,12 @@ CREATE TABLE `accounts` (
 -- Дамп данных таблицы `accounts`
 --
 
-INSERT INTO `accounts` (`id`, `user_id`, `surname`, `status`, `phone`, `show_contacts`, `contacts`, `photo_profile`, `created_at`, `updated_at`) VALUES
-(2, 1, 'Борн', 'Привет!', '8-029-111-11-11', 1, NULL, '21_02_05_08_24_36.jpg', '2021-02-04 18:19:29', '2021-02-05 17:24:36'),
-(3, 2, 'Джонсон', 'Ола!', '8-029-333-33-33', 1, NULL, '21_02_05_08_32_10.jpg', '2021-02-05 17:32:10', '2021-02-05 17:32:10');
+INSERT INTO `accounts` (`id`, `user_id`, `surname`, `status`, `phone`, `show_contacts`, `contacts`, `photo_profile`, `bg_profile`, `created_at`, `updated_at`) VALUES
+(2, 1, 'Матиас', 'Привет!', '8-029-111-11-11', 1, NULL, '21_02_11_08_30_20.jpg', '21_02_11_11_56_18.jpg', '2021-02-04 18:19:29', '2021-02-11 20:56:18'),
+(3, 2, 'Джонсон', 'Ола!', '8-029-333-33-33', 1, NULL, '21_02_09_11_36_35.jpg', '21_02_11_08_33_53.jpg', '2021-02-05 17:32:10', '2021-02-11 17:33:54'),
+(4, 3, 'Лори', 'un do stress quatro!', '8-033-123-654-85', 1, NULL, '21_02_10_12_31_11.jpg', NULL, '2021-02-09 21:30:37', '2021-02-09 21:31:12'),
+(5, 4, 'Темрали', 'Суть жизни – найти самого себя', '8-044-785-524-21', 1, NULL, '21_02_10_12_43_06.jpg', NULL, '2021-02-09 21:43:07', '2021-02-09 21:43:07'),
+(6, 16, 'Патрик', 'Если ты искренне счастлив, без разницы, что люди думают.', '8-029-852-96-45', 1, NULL, '21_02_10_12_49_59.jpg', NULL, '2021-02-09 21:50:00', '2021-02-09 21:52:44');
 
 -- --------------------------------------------------------
 
@@ -302,7 +306,16 @@ INSERT INTO `friends` (`id`, `user_id`, `friend_id`, `status`, `created_at`, `up
 (5, 2, 15, NULL, '2020-11-20 18:02:51', '2020-11-20 18:02:51'),
 (6, 1, 3, NULL, '2020-12-14 18:35:48', '2020-12-14 18:35:48'),
 (7, 1, 2, NULL, '2020-12-14 19:10:54', '2020-12-14 19:10:54'),
-(8, 2, 1, NULL, '2020-12-18 18:30:06', '2020-12-18 18:30:06');
+(8, 2, 1, NULL, '2020-12-18 18:30:06', '2020-12-18 18:30:06'),
+(9, 3, 2, NULL, '2021-02-09 21:36:31', '2021-02-09 21:36:31'),
+(10, 3, 4, NULL, '2021-02-09 21:36:49', '2021-02-09 21:36:49'),
+(11, 3, 1, NULL, '2021-02-09 21:37:07', '2021-02-09 21:37:07'),
+(12, 4, 2, NULL, '2021-02-09 21:45:01', '2021-02-09 21:45:01'),
+(13, 4, 1, NULL, '2021-02-09 21:45:14', '2021-02-09 21:45:14'),
+(14, 4, 19, NULL, '2021-02-09 21:45:27', '2021-02-09 21:45:27'),
+(15, 16, 4, NULL, '2021-02-09 21:54:34', '2021-02-09 21:54:34'),
+(16, 16, 3, NULL, '2021-02-09 21:55:09', '2021-02-09 21:55:09'),
+(17, 1, 4, NULL, '2021-02-11 21:00:08', '2021-02-11 21:00:08');
 
 -- --------------------------------------------------------
 
@@ -363,8 +376,9 @@ CREATE TABLE `last_messages` (
 --
 
 INSERT INTO `last_messages` (`id`, `user_id`, `friend_id`, `body`, `count`, `status`, `put_date`, `created_at`, `updated_at`) VALUES
-(8, 1, 2, 'u1 bbbbb', 3, NULL, '2020-12-18 22:01:11', '2020-12-18 18:58:57', '2020-12-18 19:01:11'),
-(9, 2, 2, 'u1 trrtrtrt', 3, NULL, '2020-12-18 22:00:56', '2020-12-18 19:00:21', '2020-12-18 19:00:56');
+(8, 1, 2, 'Для Марии', 4, NULL, '2021-02-10 01:24:13', '2020-12-18 18:58:57', '2021-02-09 22:24:13'),
+(9, 2, 2, 'u1 trrtrtrt', 3, NULL, '2020-12-18 22:00:56', '2020-12-18 19:00:21', '2020-12-18 19:00:56'),
+(10, 1, 3, 'Привет!', 1, NULL, '2021-02-10 01:23:49', '2021-02-09 22:23:49', '2021-02-09 22:23:49');
 
 -- --------------------------------------------------------
 
@@ -660,7 +674,9 @@ INSERT INTO `messages` (`id`, `sender_id`, `resiver_id`, `body`, `status`, `crea
 (147, 2, 2, 'u1 new ', NULL, '2020-12-18 19:00:21', '2020-12-18 19:00:21'),
 (148, 2, 2, 'u1 k;k;k;k;k', NULL, '2020-12-18 19:00:47', '2020-12-18 19:00:47'),
 (149, 2, 2, 'u1 trrtrtrt', NULL, '2020-12-18 19:00:56', '2020-12-18 19:00:56'),
-(150, 2, 1, 'u1 bbbbb', NULL, '2020-12-18 19:01:11', '2020-12-18 19:01:11');
+(150, 2, 1, 'u1 bbbbb', NULL, '2020-12-18 19:01:11', '2020-12-18 19:01:11'),
+(151, 1, 3, 'Привет!', NULL, '2021-02-09 22:23:49', '2021-02-09 22:23:49'),
+(152, 1, 2, 'Для Марии', NULL, '2021-02-09 22:24:13', '2021-02-09 22:24:13');
 
 -- --------------------------------------------------------
 
@@ -742,7 +758,8 @@ CREATE TABLE `movies` (
 INSERT INTO `movies` (`id`, `name`, `user_id`, `created_at`, `updated_at`) VALUES
 (1, 'брат', 1, '2020-12-18 16:23:39', '2020-12-18 16:23:39'),
 (2, 'поймай меня', 1, '2020-12-18 16:29:53', '2020-12-18 16:29:53'),
-(3, 'если сможешь', 1, '2020-12-18 16:29:53', '2020-12-18 16:29:53');
+(3, 'если сможешь', 1, '2020-12-18 16:29:53', '2020-12-18 16:29:53'),
+(4, 'Игра на понижение', 3, '2021-02-09 21:32:51', '2021-02-09 21:32:51');
 
 -- --------------------------------------------------------
 
@@ -765,7 +782,8 @@ CREATE TABLE `movie_users` (
 INSERT INTO `movie_users` (`id`, `movie_id`, `user_id`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, '2020-12-18 16:23:39', '2020-12-18 16:23:39'),
 (2, 2, 1, '2020-12-18 16:29:53', '2020-12-18 16:29:53'),
-(3, 3, 1, '2020-12-18 16:29:53', '2020-12-18 16:29:53');
+(3, 3, 1, '2020-12-18 16:29:53', '2020-12-18 16:29:53'),
+(4, 4, 3, '2021-02-09 21:32:51', '2021-02-09 21:32:51');
 
 -- --------------------------------------------------------
 
@@ -793,7 +811,18 @@ INSERT INTO `music` (`id`, `name`, `user_id`, `created_at`, `updated_at`) VALUES
 (37, 'Крематорий', 1, '2020-10-30 18:11:28', '2020-10-30 18:11:28'),
 (39, 'Линда', 1, '2020-10-30 18:17:54', '2020-10-30 18:17:54'),
 (53, 'Бутусов', 1, '2020-11-04 15:51:53', '2020-11-04 15:51:53'),
-(54, 'jljlkjlk', 1, '2020-11-30 16:30:08', '2020-11-30 16:30:08');
+(54, 'jljlkjlk', 1, '2020-11-30 16:30:08', '2020-11-30 16:30:08'),
+(55, 'Меладзе', 2, '2021-02-09 20:39:02', '2021-02-09 20:39:02'),
+(56, 'Монатик', 2, '2021-02-09 20:39:02', '2021-02-09 20:39:02'),
+(57, 'Монеточка', 2, '2021-02-09 20:39:02', '2021-02-09 20:39:02'),
+(58, 'Intelligency', 3, '2021-02-09 21:32:51', '2021-02-09 21:32:51'),
+(59, 'Little Big', 3, '2021-02-09 21:32:51', '2021-02-09 21:32:51'),
+(60, 'MARUV', 3, '2021-02-09 21:32:51', '2021-02-09 21:32:51'),
+(61, 'Время и Стекло', 4, '2021-02-09 21:44:39', '2021-02-09 21:44:39'),
+(62, 'LOBODA', 4, '2021-02-09 21:44:39', '2021-02-09 21:44:39'),
+(63, 'KAZKA', 16, '2021-02-09 21:51:37', '2021-02-09 21:51:37'),
+(64, 'Потап и Настя', 16, '2021-02-09 21:51:37', '2021-02-09 21:51:37'),
+(65, 'Burito', 16, '2021-02-09 21:51:37', '2021-02-09 21:51:37');
 
 -- --------------------------------------------------------
 
@@ -819,7 +848,18 @@ INSERT INTO `music_users` (`id`, `music_id`, `user_id`, `created_at`, `updated_a
 (40, 35, 1, '2020-10-30 18:11:01', '2020-10-30 18:11:01'),
 (44, 39, 1, '2020-10-30 18:17:54', '2020-10-30 18:17:54'),
 (59, 53, 1, '2020-11-04 15:51:53', '2020-11-04 15:51:53'),
-(60, 36, 1, '2020-11-29 21:07:23', '2020-11-29 21:07:23');
+(60, 36, 1, '2020-11-29 21:07:23', '2020-11-29 21:07:23'),
+(62, 55, 2, '2021-02-09 20:39:02', '2021-02-09 20:39:02'),
+(63, 56, 2, '2021-02-09 20:39:02', '2021-02-09 20:39:02'),
+(64, 57, 2, '2021-02-09 20:39:02', '2021-02-09 20:39:02'),
+(65, 58, 3, '2021-02-09 21:32:51', '2021-02-09 21:32:51'),
+(66, 59, 3, '2021-02-09 21:32:51', '2021-02-09 21:32:51'),
+(67, 60, 3, '2021-02-09 21:32:51', '2021-02-09 21:32:51'),
+(68, 61, 4, '2021-02-09 21:44:39', '2021-02-09 21:44:39'),
+(69, 62, 4, '2021-02-09 21:44:39', '2021-02-09 21:44:39'),
+(70, 63, 16, '2021-02-09 21:51:37', '2021-02-09 21:51:37'),
+(71, 64, 16, '2021-02-09 21:51:37', '2021-02-09 21:51:37'),
+(72, 65, 16, '2021-02-09 21:51:37', '2021-02-09 21:51:37');
 
 -- --------------------------------------------------------
 
@@ -1087,9 +1127,10 @@ CREATE TABLE `properties` (
 
 INSERT INTO `properties` (`id`, `user_id`, `born`, `gender`, `city`, `maritalStatus`, `aboutMe`, `created_at`, `updated_at`) VALUES
 (1, 1, '1994-01-10', 'Мужской', 'Гомель', 'married', 'Что-то', '2020-10-28 18:13:33', '2020-12-04 16:23:23'),
-(2, 2, '1986-06-04', 'Женский', 'Минск', 'idle', '', '2020-12-04 16:25:55', '2020-12-04 16:25:55'),
-(3, 3, '2000-11-23', 'Женский', 'Гомель', 'inSearch', '', '2020-12-04 18:17:51', '2020-12-04 18:17:51'),
-(4, 4, '2000-01-01', 'Мужской', '', 'idle', '', '2021-01-15 18:00:30', '2021-01-15 18:01:35');
+(2, 2, '1986-06-04', 'Женский', 'Минск', 'inSearch', '', '2020-12-04 16:25:55', '2021-02-09 20:39:02'),
+(3, 3, '2000-11-23', 'Женский', 'Гомель', 'inRelationship', '', '2020-12-04 18:17:51', '2021-02-09 21:38:16'),
+(4, 4, '2000-01-01', 'Мужской', 'Солигорск', 'idle', '', '2021-01-15 18:00:30', '2021-02-09 21:44:39'),
+(5, 16, '1987-06-25', 'Женский', 'Брест', 'married', '', '2021-02-09 21:51:37', '2021-02-09 21:51:37');
 
 -- --------------------------------------------------------
 
@@ -1121,7 +1162,11 @@ INSERT INTO `publications` (`id`, `body`, `status`, `type`, `group_id`, `user_id
 (6, '<p>5</p>', 'active', '', 0, 1, '2020-10-21 17:40:53', '2020-10-21 17:40:53'),
 (7, '<p>Hello world!</p>', 'active', '', 0, 1, '2020-11-11 17:54:44', '2020-11-11 17:54:44'),
 (8, '<p><strong>Good evening!&nbsp;<img alt=\"smiley\" src=\"http://localhost:8000/ckeditor-m/ckeditor/plugins/smiley/images/regular_smile.png\" style=\"height:23px; width:23px\" title=\"smiley\" /></strong></p>', 'active', '', 0, 1, '2020-11-12 18:48:45', '2020-11-12 18:48:45'),
-(11, '<p><img alt=\"\" src=\"https://inflowers.by/wp-content/uploads/2019/06/2006201903.jpg\" style=\"height:167px; width:250px\" /></p>', 'active', '', 0, 1, '2021-02-05 17:38:15', '2021-02-05 17:38:15');
+(11, '<p><img alt=\"\" src=\"https://inflowers.by/wp-content/uploads/2019/06/2006201903.jpg\" style=\"height:167px; width:250px\" /></p>', 'active', '', 0, 1, '2021-02-05 17:38:15', '2021-02-05 17:38:15'),
+(13, '<p><img alt=\"\" src=\"https://img4.socratify.net/d38ba8920b42260956_600x401.jpg\" style=\"height:366px; width:550px\" /></p>', 'active', '', 0, 2, '2021-02-09 21:21:32', '2021-02-09 21:21:32'),
+(14, '<p><img alt=\"\" src=\"https://avatars.mds.yandex.net/get-zen_doc/2417275/pub_5ea5a451007c871a15901c60_5ea819bee62e151463c46f58/scale_1200\" style=\"height:309px; width:550px\" /></p>', 'active', '', 0, 3, '2021-02-09 21:33:59', '2021-02-09 21:33:59'),
+(15, '<p><img alt=\"\" src=\"https://www.okino.ua/media/var/article/2015/12/27/best_2015.jpg\" style=\"height:284px; width:550px\" /></p>', 'active', '', 0, 4, '2021-02-09 21:46:40', '2021-02-09 21:46:40'),
+(16, '<p>Самое главное, наслаждаться жизнью и быть счастливым &ndash; это все, что имеет значение.</p>\r\n\r\n<p><img alt=\"\" src=\"https://www.fresher.ru/manager_content/4-2017/prekrasnoe-cvetenie-yaponskoj-ajvy-v-krymu/3.jpg\" style=\"height:366px; width:550px\" /></p>', 'active', '', 0, 16, '2021-02-09 21:54:03', '2021-02-09 21:54:03');
 
 -- --------------------------------------------------------
 
@@ -1275,12 +1320,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `sub`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Джон', 'user1@mail.ru', '', 'users/default.png', NULL, '$2y$10$P1UyPe8lQ92zCn4y1BvsgOOUvBx1YcMAIokqMtFD7JLB9S6/bPhDm', NULL, NULL, '2020-10-09 13:57:33', '2021-02-04 18:23:52'),
+(1, 1, 'Алексей', 'user1@mail.ru', '', 'users/default.png', NULL, '$2y$10$P1UyPe8lQ92zCn4y1BvsgOOUvBx1YcMAIokqMtFD7JLB9S6/bPhDm', NULL, NULL, '2020-10-09 13:57:33', '2021-02-09 19:34:20'),
 (2, 2, 'Мария', 'user2@mail.ru', '', 'users\\November2020\\sbUUH3ZAVMPFDp10mRIe.jpg', NULL, '$2y$10$AXeLAFmexPVVmpU7Vv6QPe7zwIcTCMH5u3M4hKLOqb318S6s5/rYe', NULL, '{\"locale\":\"en\"}', '2020-11-04 16:00:00', '2021-02-05 17:32:10'),
-(3, NULL, 'user three', 'user3@mail.ru', '', 'users/default.png', NULL, '$2y$10$lc0lEm0fWTD2Fm6aWIYUGuVHdgVZ/zrznhCye3vMxZSjxYj/Aa.Vq', NULL, '{\"locale\":\"en\"}', '2020-11-04 16:01:26', '2020-11-06 16:52:33'),
-(4, 2, 'usertest2', 'usertest2@mail.ru', '', 'users/default.png', NULL, '$2y$10$6FglVOFkApE.8Tb7PjoWl.0/To1R3ni1.7RMPwG78RtX0JFesw0gi', NULL, NULL, '2020-11-18 16:25:16', '2020-11-18 16:25:16'),
-(16, 2, 'Джулия', 'testprofile@mail.ru', NULL, 'users/default.png', NULL, '$2y$10$maBhgAJwaW/z80htnU4kjemqwcbKiDhpZSZTRDfvFJAYCXRZvconC', NULL, NULL, '2021-02-05 16:08:47', '2021-02-05 16:08:47'),
-(19, 2, 'Тоня', 'rinhvivar@gmail.com', NULL, 'users/default.png', NULL, '$2y$10$bBHqtIplGPEixBSBZzA46O2nfHF8RsTrdNyLDLpBvjhejcR2lNuHK', NULL, NULL, '2021-02-05 16:27:50', '2021-02-05 16:27:50');
+(3, NULL, 'Эдита', 'user3@mail.ru', '', 'users/default.png', NULL, '$2y$10$lc0lEm0fWTD2Fm6aWIYUGuVHdgVZ/zrznhCye3vMxZSjxYj/Aa.Vq', NULL, '{\"locale\":\"en\"}', '2020-11-04 16:01:26', '2021-02-09 21:30:37'),
+(4, 2, 'Ибрагим', 'usertest2@mail.ru', '', 'users/default.png', NULL, '$2y$10$6FglVOFkApE.8Tb7PjoWl.0/To1R3ni1.7RMPwG78RtX0JFesw0gi', NULL, NULL, '2020-11-18 16:25:16', '2021-02-09 21:43:07'),
+(16, 2, 'Джулия', 'testprofile@mail.ru', NULL, 'users/default.png', NULL, '$2y$10$maBhgAJwaW/z80htnU4kjemqwcbKiDhpZSZTRDfvFJAYCXRZvconC', NULL, NULL, '2021-02-05 16:08:47', '2021-02-05 16:08:47');
 
 -- --------------------------------------------------------
 
@@ -1518,7 +1562,7 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT для таблицы `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `albums`
@@ -1554,7 +1598,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT для таблицы `friends`
 --
 ALTER TABLE `friends`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT для таблицы `galeries`
@@ -1566,7 +1610,7 @@ ALTER TABLE `galeries`
 -- AUTO_INCREMENT для таблицы `last_messages`
 --
 ALTER TABLE `last_messages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблицы `mains`
@@ -1596,7 +1640,7 @@ ALTER TABLE `menu_items`
 -- AUTO_INCREMENT для таблицы `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
 
 --
 -- AUTO_INCREMENT для таблицы `migrations`
@@ -1608,25 +1652,25 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT для таблицы `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `movie_users`
 --
 ALTER TABLE `movie_users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `music`
 --
 ALTER TABLE `music`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT для таблицы `music_users`
 --
 ALTER TABLE `music_users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT для таблицы `pages`
@@ -1650,13 +1694,13 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT для таблицы `properties`
 --
 ALTER TABLE `properties`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `publications`
 --
 ALTER TABLE `publications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT для таблицы `roles`

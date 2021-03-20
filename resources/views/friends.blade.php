@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
  <div class="row justify-content-center">
-        <div class="col-2 ">
+        <div class="col-3 ">
            @include('includes.allfriends')
         </div>
-        <div class="col-10">
+        <div class="col-9">
             <div class="tab-content" id="v-pills-tabContent">
                 <div id="v-pills-search_friend" >
                     <div class="container">
@@ -21,4 +22,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection

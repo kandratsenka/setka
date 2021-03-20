@@ -46,7 +46,7 @@ class Auth0IndexController extends Controller
 
         return view('profile')->with(
             'user',
-            print_r(Auth::user()->getUserInfo(), true)
+            /*print_r(Auth::user()->getUserInfo(), true)*/
         );
     }
 }

@@ -19,11 +19,12 @@ class UserObserver
         $toname = $user->name;
         $toemail = $user->email;
         $data = ['subject'=>'Вы зарегистрированы на сайте "Сетка"','name'=>$user->name];
-        Mail::send(['html'=>'email'],$data,function($message) use ($toname,$toemail){
+        mail('helpforsetka@yandex.by', 'register',$data['subject']);
+        /*Mail::send(['html'=>'email'],$data,function($message) use ($toname,$toemail){
             $message->to($toemail,$toname)->subject('Регистрация');
-            $message->from(env('MAIL_FROM_ADDRESS','test18112020imap@gmail.com'),env('APP_NAME','Сетка'));
+            $message->from(env('MAIL_FROM_ADDRESS','helpforsetka@yandex.by'),env('APP_NAME','Сетка'));
             $message->getHeaders()->addTextHeader('Content-type', 'text/html; charset=utf-8 \r\n');
-        });
+        });*/
     }
 
     /**

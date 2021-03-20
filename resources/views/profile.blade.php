@@ -1,7 +1,17 @@
 @extends('layouts.app')
 @push('scripts') 
 <script src="{{asset('js/profile.js')}}"></script>
+<script src="{{asset('js/cropper.js?time='.time())}}"></script>
+<script src="{{asset('js/cropper.main.js')}}"></script>
+<script src="{{asset('js/cropper_save.js?time='.time())}}"></script>
 @endpush
+@section('styles')
+@parent()    
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap@4/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('/css/cropper.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/cropper.main.css')}}">
+@endsection
 @section('content')
 
 
@@ -10,7 +20,15 @@
 
     <div class="card " id="foto_profile">
         <div id="bg_profile">
-            <img src="../image/minimalizm-oblaka-blue.jpg" class="card-img-top avatar-top" id="bg" alt="Фото профиля">
+          
+           <!-- @include('includes.photoProfile',['classname'=>'bg_profile'])-->
+            @if($obj_user->accounts)
+            @if($obj_user->accounts->bg_profile)
+            <img src="{{asset('uploads/'.$obj_user->id.'/'.$obj_user->accounts->bg_profile)}}" class="card-img-top avatar-top" id="bg" alt="Фон профиля" style="width:100%;">
+            @else
+            <img src="../image/minimalizm-oblaka-blue.jpg" class="card-img-top avatar-top" id="bg" alt="Фото профиля" >
+            @endif
+            @endif
             @if(auth::user())
             @if(auth::user()->id == $obj_user->id)
                 <div id="bg_showhite">
@@ -205,7 +223,7 @@
 
 
 <!-- Modal bg-->
-<div class="modal fade" id="bgModal" tabindex="-1" role="dialog" aria-labelledby="bgModalLabel" aria-hidden="true">
+<div class="modal fade " id="bgModal" tabindex="-1" role="dialog" aria-labelledby="bgModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -214,24 +232,31 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-       <form action="{{asset('/profile/avatar/add')}}" method="post" enctype="multipart/form-data">
-      <div class="modal-body">
-            @if($obj_user->avatar)
-            <img src="{{asset('image/avatar/icons8-user-settings-100.png')}}" alt="Avatar" id="changed_avatar" class="avatar1">
-            @else 
-            <img src="../image/avatar.jpg" alt="Avatar"  id="avatar_default" class="avatar1">
+       <form action="{{asset('/account/bg')}}" method="post" enctype="multipart/form-data">
+      @csrf
+          <div class="modal-body">
+           <!--@include('includes.photoProfile',['classname'=>'bg'])-->
+            @if($obj_user->accounts)
+            @if($obj_user->accounts->bg_profile)
+            @include('includes.cropper',['classname'=>'bg'])
+            <!--<img src="{{asset('uploads/'.$obj_user->id.'/s'.$obj_user->accounts->bg_profile)}}" alt="Background"  id="bg_default" class="bg" style="width:100%;">-->
+            
+            @else
+            <img src="{{asset('image/bg/minimalizm-oblaka-blue.jpg')}}" alt="Background" id="changed_bg" class="bg" style="width:450px;">
             @endif
-           @csrf
-            <div class="form-group">
+            @else 
+            <img src="{{asset('image/bg/minimalizm-oblaka-blue.jpg')}}" alt="Background" id="changed_bg" class="bg" style="width:450px;">
+            @endif
+           <!-- <div class="form-group">
                 <input type="file" class="form-control-file" id="exampleFormControlFile1" name="picture1" />
-            </div>
+            </div>-->
         
       </div>
       
-      <div class="modal-footer">
+      <!--<div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
         <button type="submit" class="btn btn-primary">Загрузить</button>
-      </div>
+      </div>-->
       </form>
     </div>
   </div>

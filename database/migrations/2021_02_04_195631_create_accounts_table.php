@@ -22,6 +22,7 @@ class CreateAccountsTable extends Migration
             $table->string("show_contacts");
             $table->string("contacts")->nullable();
             $table->string("photo_profile")->nullable();
+            $table->string("bg_profile")->nullable();
             $table->timestamps();
         });
     }

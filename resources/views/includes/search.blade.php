@@ -1,4 +1,4 @@
-<div class="col-3">
+<div class="col-4">
 
         <div class="card">
             <div class="card-header">
@@ -9,26 +9,26 @@
                 <form method="post" action="{{asset('/friends/search')}}">
                    @csrf
                     <div class="form-group row">
-                        <label for="inputState" class="col-form-label col-sm-5"><b>Город</b></label>
+                        <label for="inputState" class="col-form-label col-sm-5"><small><b>Город</b></small></label>
                         <input type="text" id="inputState" class="form-control col-sm-7" name="city">
                         
                     </div>
                     <div class="form-group row">
-                        <label for="inputSchool" class="col-form-label col-sm-5"><b>Школа</b></label>
+                        <label for="inputSchool" class="col-form-label col-sm-5"><small><b>Школа</b></small></label>
                         <select id="inputSchool" class="form-control col-sm-7">
                             <option selected>Choose...</option>
                             <option>...</option>
                         </select>
                     </div>
                     <div class="form-group row">
-                        <label for="inputUniversity" class="col-form-label col-sm-5"><b>Университет</b></label>
+                        <label for="inputUniversity" class="col-form-label col-sm-5"><small><b>Университет</b></small></label>
                         <select id="inputUniversity" class="form-control col-sm-7">
                             <option selected>Choose...</option>
                             <option>...</option>
                         </select>
                     </div>
                     <div class="form-group row">
-                        <label for="inputAge" class="col-form-label col-sm-8"><b>Возраст</b></label>
+                        <label for="inputAge" class="col-form-label col-sm-8"><small><b>Возраст</b></small></label>
 
                         <select id="inputAgeFrom" class="form-control col-sm-5 ml-3" name="inputAgeFrom">
                             <option selected value="0">От</option>
@@ -46,7 +46,7 @@
                     </div>
 
                     <fieldset class="form-group row">
-                        <legend class="col-form-label col-sm-8 pt-0"><b>Пол</b></legend>
+                        <legend class="col-form-label col-sm-8 pt-0"><small><b>Пол</b></small></legend>
                         <div class="col-sm-7">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="Мужской" >
@@ -69,7 +69,7 @@
                         </div>
                     </fieldset>
                     <div class="form-group row">
-                        <label for="maritalStatus" class="col-sm-8 col-form-label"><b>{{__('menu.profile_information.marital_status')}}</b></label>
+                        <label for="maritalStatus" class="col-sm-8 col-form-label"><b><small>{{__('menu.profile_information.marital_status')}}</small></b></label>
                         <div class="col-sm-12">
                             <select class="form-control" id="maritalStatus" name="maritalStatus">
                                 <option selected>В поиске</option>

@@ -1,0 +1,108 @@
+{
+  "_from": "@ckeditor/ckeditor5-build-balloon",
+  "_id": "@ckeditor/ckeditor5-build-balloon@25.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-cF71FnIgh87ei7UaCfVuuf6h5vAt5jJn8qhUREFYofHvP4nNlewkgk2RIBoyMsETESjMFGdoP8C9P9yKZ+BP/g==",
+  "_location": "/@ckeditor/ckeditor5-build-balloon",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@ckeditor/ckeditor5-build-balloon",
+    "name": "@ckeditor/ckeditor5-build-balloon",
+    "escapedName": "@ckeditor%2fckeditor5-build-balloon",
+    "scope": "@ckeditor",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@ckeditor/ckeditor5-build-balloon/-/ckeditor5-build-balloon-25.0.0.tgz",
+  "_shasum": "361b83be61cf4ea1f9bc7009df32dc9c0dabe418",
+  "_spec": "@ckeditor/ckeditor5-build-balloon",
+  "_where": "c:\\xampp\\htdocs\\laravel",
+  "author": {
+    "name": "CKSource",
+    "url": "http://cksource.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/ckeditor/ckeditor5/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "@ckeditor/ckeditor5-adapter-ckfinder": "^25.0.0",
+    "@ckeditor/ckeditor5-autoformat": "^25.0.0",
+    "@ckeditor/ckeditor5-basic-styles": "^25.0.0",
+    "@ckeditor/ckeditor5-block-quote": "^25.0.0",
+    "@ckeditor/ckeditor5-ckfinder": "^25.0.0",
+    "@ckeditor/ckeditor5-easy-image": "^25.0.0",
+    "@ckeditor/ckeditor5-editor-balloon": "^25.0.0",
+    "@ckeditor/ckeditor5-essentials": "^25.0.0",
+    "@ckeditor/ckeditor5-heading": "^25.0.0",
+    "@ckeditor/ckeditor5-image": "^25.0.0",
+    "@ckeditor/ckeditor5-indent": "^25.0.0",
+    "@ckeditor/ckeditor5-link": "^25.0.0",
+    "@ckeditor/ckeditor5-list": "^25.0.0",
+    "@ckeditor/ckeditor5-media-embed": "^25.0.0",
+    "@ckeditor/ckeditor5-paragraph": "^25.0.0",
+    "@ckeditor/ckeditor5-paste-from-office": "^25.0.0",
+    "@ckeditor/ckeditor5-table": "^25.0.0",
+    "@ckeditor/ckeditor5-typing": "^25.0.0",
+    "webpack-cli": "^3.3.11"
+  },
+  "deprecated": false,
+  "description": "The balloon editor build of CKEditor 5 – the best browser-based rich text editor.",
+  "devDependencies": {
+    "@ckeditor/ckeditor5-core": "^25.0.0",
+    "@ckeditor/ckeditor5-dev-utils": "^20.0.0",
+    "@ckeditor/ckeditor5-dev-webpack-plugin": "^20.0.0",
+    "@ckeditor/ckeditor5-theme-lark": "^25.0.0",
+    "postcss-loader": "^3.0.0",
+    "raw-loader": "^4.0.1",
+    "style-loader": "^1.2.1",
+    "terser-webpack-plugin": "^3.0.2",
+    "webpack": "^4.43.0"
+  },
+  "engines": {
+    "node": ">=12.0.0",
+    "npm": ">=5.7.1"
+  },
+  "files": [
+    "build"
+  ],
+  "homepage": "https://ckeditor.com/ckeditor-5",
+  "keywords": [
+    "wysiwyg",
+    "rich text",
+    "editor",
+    "html",
+    "contentEditable",
+    "editing",
+    "operational transformation",
+    "ot",
+    "collaboration",
+    "collaborative",
+    "real-time",
+    "framework",
+    "ckeditor5-build",
+    "ckeditor",
+    "ckeditor5",
+    "ckeditor 5"
+  ],
+  "license": "GPL-2.0-or-later",
+  "main": "./build/ckeditor.js",
+  "name": "@ckeditor/ckeditor5-build-balloon",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ckeditor/ckeditor5.git",
+    "directory": "packages/ckeditor5-build-balloon"
+  },
+  "scripts": {
+    "build": "webpack --mode production",
+    "preversion": "npm run build"
+  },
+  "version": "25.0.0"
+}

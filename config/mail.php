@@ -45,6 +45,21 @@ return [
             'auth_mode' => null,
         ],
 
+     
+        /*'smtp'=>[
+                'transport' => 'smtp',
+                'host' => env('MAIL_HOST', 'smtp.yandex.ru'),
+                'port' => env('MAIL_PORT', 587),
+                'from' => [
+                    'address' => 'user@yandex.ru',
+                    'name' => 'Type What You Want',
+                ],
+                'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+                'username' => env('MAIL_USERNAME', 'user@yandex.ru'),
+                'password' => env('MAIL_PASSWORD', 'secretpass'),
+
+       ],*/
+        
         'ses' => [
             'transport' => 'ses',
         ],

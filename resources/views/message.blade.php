@@ -52,10 +52,10 @@ $(document).ready(function(e) {
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-3">
+        <div class="col-md-3">
             @include('includes.message_menu')
         </div>
-        <div class="card col-9">
+        <div class="card col-md-9">
 
             <div class="container">
                 
@@ -69,7 +69,7 @@ $(document).ready(function(e) {
                  <div id="display"> </div>
                  @foreach($objs as $one)
                  <div class="row">
-                     <div class="col-md-8 {{(Auth::user()->id == $one->resiver_id)?'resiver ':'sender offset-md-4'}}">
+                     <div class="col-md-6 {{(Auth::user()->id == $one->resiver_id)?'resiver ':'sender offset-md-4'}}">
                      {{$one->body}}
                      <time class="m_time mt-3 position-relative">{{\Carbon\Carbon::parse($one->created_at)->format('H:i')}}</time>
                      </div>

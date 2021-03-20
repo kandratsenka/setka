@@ -1,0 +1,20 @@
+{"users":[
+{	
+	"email":"user1@mail.ru",
+	"property":{
+		"born":"1994-01-10",
+		"gender":"Мужской",
+		"city":"Гомель",
+		"maritalStatus":"married",
+		"aboutMe":"Что-то",
+	},
+	"music":[
+		"Lacuna Coil",
+		"Prodigy",	
+	],
+	"movies":[
+		"1+1",
+		"Парфюмер"
+	]
+},
+]}
